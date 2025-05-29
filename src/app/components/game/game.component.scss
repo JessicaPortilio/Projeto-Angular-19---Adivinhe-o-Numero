@@ -1,0 +1,240 @@
+// Importa funções de cores do Sass e nosso arquivo de variáveis
+@use 'sass:color'; // Fornece funções para manipulação de cores
+@use '../../../styles/variables.scss' as vars; // Importa nossas variáveis de design
+
+
+
+/* Estilo do container do jogo (cartão) */
+.game-container {
+    max-width: 500px; // Largura máxima em telas grandes
+    width: 100%; // Largura total em telas pequenas
+    margin: 2rem auto; // Margem superior/inferior e centralização
+    padding: 2.5rem; // Espaçamento interno
+    background-color: vars.$color-white; // Cor de fundo branca
+    border-radius: vars.$border-radius; // Bordas arredondadas
+    box-shadow: vars.$box-shadow-lg; // Sombra sutil para profundidade
+    text-align: center; // Texto centralizado
+    position: relative; // Necessário para o pseudo-elemento
+    overflow: hidden; // Mantém tudo contido
+    
+    /* Barra colorida no topo do jogo */
+    &::before {
+        content: ''; // Necessário para pseudo-elementos
+        position: absolute; // Posiciona relativo ao game-container
+        top: 0; left: 0; right: 0; // Estica por toda a largura no topo
+        height: 6px; // Altura fina
+        background: linear-gradient(90deg, vars.$color-primary 0%, vars.$color-secondary 100%); // Gradiente de cores
+    }
+}
+
+/* Estilo do título do jogo */
+.game-title {
+    color: vars.$color-primary; // Usa nossa cor azul primária
+    margin-bottom: 1.5rem; // Espaço abaixo do título
+    font-size: 2rem; // Texto grande
+    font-weight: 700; // Negrito
+    letter-spacing: -0.5px; // Espaçamento entre letras um pouco mais apertado
+}
+
+/* Estilo das instruções do jogo */
+.game-instructions {
+    color: lighten(vars.$color-text, 15%); // Cor de texto mais clara
+    margin-bottom: 2rem; // Espaço abaixo das instruções
+    font-size: 1.1rem; // Texto um pouco maior que o normal
+    line-height: 1.5; // Espaçamento confortável entre linhas
+}
+
+/* Container do formulário */
+.game-form-container {
+    margin-bottom: 2rem; // Espaço abaixo do formulário
+}
+
+/* Grupo de elementos do formulário */
+.form-group {
+    margin: 0 2rem 1.5rem 0; // Espaço entre grupos de formulário
+    text-align: left; // Alinha o conteúdo à esquerda
+}
+
+/* Rótulo dos campos de entrada */
+.form-label {
+    display: block; // Faz o rótulo ocupar toda a largura
+    margin-bottom: 0.75rem; // Espaço entre rótulo e campo
+    color: vars.$color-text; // Cor de texto escura
+    font-weight: 600; // Semi-negrito
+    font-size: 0.95rem; // Texto um pouco menor que o normal
+}
+
+/* Estilo dos campos de entrada */
+.form-input {
+    width: 100%; // Largura total do container
+    padding: 1rem; // Espaçamento interno confortável
+    border: 2px solid vars.$color-border; // Borda cinza clara
+    border-radius: vars.$border-radius-sm; // Cantos levemente arredondados
+    font-size: 1rem; // Tamanho normal de texto
+    transition: vars.$transition-base; // Efeitos suaves de hover/focus
+    background-color: lighten(vars.$color-bg, 3%); // Fundo cinza bem claro
+    
+    /* Estilo quando o campo está em foco */
+    &:focus {
+        outline: none; // Remove a borda padrão do navegador
+        border-color: vars.$color-primary; // Borda azul quando ativo
+        box-shadow: 0 0 0 3px rgba(vars.$color-primary, 0.2); // Efeito de brilho sutil
+        background-color: vars.$color-white; // Muda para fundo branco
+    }
+
+    /* Estilo para campo inválido */
+    &.invalid {
+        border-color: vars.$color-error; // Borda vermelha para erros
+    }
+}
+
+/* Estilo das mensagens de erro */
+.error-messages {
+    color: vars.$color-error; // Texto vermelho para erros
+    font-size: 0.85rem; // Texto pequeno
+    margin-top: 0.5rem; // Espaço acima das mensagens
+    text-align: left; // Alinha à esquerda
+    font-weight: 500; // Peso médio
+}
+
+/* Estilo do botão de enviar */
+.submit-button {
+    background-color: vars.$color-primary; // Fundo azul
+    color: vars.$color-white; // Texto branco
+    padding: 1rem 2rem; // Tamanho confortável
+    border: none; // Sem borda
+    border-radius: vars.$border-radius-sm; // Cantos arredondados
+    font-size: 1rem; // Tamanho normal de texto
+    font-weight: 600; // Semi-negrito
+    cursor: pointer; // Cursor em forma de mão
+    transition: vars.$transition-base; // Transições suaves
+    width: 100%; // Largura total
+    text-transform: uppercase; // Texto em maiúsculas
+    letter-spacing: 0.5px; // Espaçamento entre letras
+    
+    /* Estado quando o mouse está sobre o botão */
+    &:hover {
+        background-color: color.adjust(vars.$color-primary, $lightness: -10%); // Azul mais escuro
+        transform: translateY(-2px); // Move o botão para cima levemente
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adiciona sombra
+    }
+
+    /* Estado quando o botão está sendo clicado */
+    &:active {
+        transform: translateY(0); // Volta à posição normal
+    }
+
+    /* Estado desabilitado */
+    &:disabled {
+        background-color: vars.$color-disabled; // Fundo cinza
+        color: lighten(vars.$color-text, 40%); // Texto claro
+        cursor: not-allowed; // Cursor de "não permitido"
+        transform: none; // Sem movimento
+        box-shadow: none; // Sem sombra
+    }
+}
+
+/* Seção de informações do jogo */
+.game-info {
+    margin-top: 2.5rem; // Espaço acima da seção
+    text-align: center; // Texto centralizado
+    
+    /* Estilo dos parágrafos */
+    p {
+        margin-bottom: 0.75rem; // Espaço entre parágrafos
+        color: vars.$color-text; // Texto escuro
+        font-size: 0.95rem; // Texto um pouco menor
+    }
+}
+
+/* Container da barra de progresso */
+.progress-bar {
+    height: 10px; // Altura fina
+    background-color: vars.$color-bg; // Fundo cinza claro
+    border-radius: 5px; // Cantos totalmente arredondados
+    margin: 1.5rem 0; // Espaço acima e abaixo
+    overflow: hidden; // Mantém a barra de progresso contida
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); // Sombra interna para profundidade
+}
+
+/* Indicador de progresso */
+.progress {
+    height: 100%; // Preenche a altura do container
+    background: linear-gradient(90deg, vars.$color-primary 0%, vars.$color-success 100%); // Gradiente de cores
+    transition: width 0.5s ease-out; // Animação suave quando a largura muda
+}
+
+/* Estilo das mensagens de feedback */
+.feedback-message {
+    padding: 1.25rem; // Espaçamento interno
+    border-radius: vars.$border-radius-sm; // Cantos arredondados
+    margin: 1.5rem 0; // Espaço acima e abaixo
+    font-weight: 600; // Semi-negrito
+    font-size: 1.05rem; // Texto um pouco maior
+    animation: fadeIn 0.3s ease-out; // Animação de aparecimento
+
+    /* Variação para mensagem de sucesso */
+    &.success {
+        background-color: rgba(vars.$color-success, 0.1); // Fundo azul claro
+        color: darken(vars.$color-success, 20%); // Texto azul escuro
+        border-left: 4px solid vars.$color-success; // Borda lateral azul
+        display: block;
+    }
+
+    /* Variação para mensagem de erro */
+    &.error {
+        background-color: rgba(vars.$color-error, 0.1); // Fundo vermelho claro
+        color: darken(vars.$color-error, 10%); // Texto vermelho escuro
+        border-left: 4px solid vars.$color-error; // Borda lateral vermelha
+        display: block;
+    }
+}
+
+/* Container dos botões de ação do jogo */
+.game-actions {
+    margin-top: 2rem; // Espaço acima dos botões
+}
+
+/* Botão de reiniciar jogo */
+.restart-button {
+    background-color: vars.$color-secondary; // Fundo azul escuro
+    color: vars.$color-white; // Texto branco
+    padding: 1rem 2rem; // Tamanho confortável
+    border: none; // Sem borda
+    border-radius: vars.$border-radius-sm; // Cantos arredondados
+    font-size: 1rem; // Tamanho normal de texto
+    font-weight: 600; // Semi-negrito
+    cursor: pointer; // Cursor em forma de mão
+    transition: vars.$transition-base; // Transições suaves
+    width: 100%; // Largura total
+    
+    /* Estado quando o mouse está sobre o botão */
+    &:hover {
+        background-color: color.adjust(vars.$color-secondary, $lightness: -10%); // Azul mais escuro
+        transform: translateY(-2px); // Move o botão para cima levemente
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adiciona sombra
+    }
+}
+
+/* Definição da animação de aparecimento */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; // Começa invisível
+        transform: translateY(10px); // Começa um pouco abaixo
+    }
+    to { 
+        opacity: 1; // Termina totalmente visível
+        transform: translateY(0); // Vai para a posição normal
+    }
+}
+
+.feedback {
+    padding: 1.25rem; // Espaçamento interno
+    border-radius: vars.$border-radius-sm; // Cantos arredondados
+    margin: 1.5rem 0; // Espaço acima e abaixo
+    font-weight: 600; // Semi-negrito
+    font-size: 1.05rem; // Texto um pouco maior
+    background-color: rgba(vars.$color-info, 0.1); // Fundo laranja claro
+    border-left: 4px solid vars.$color-info; // Borda lateral laranja
+    display: block;
+}
