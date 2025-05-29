@@ -1,0 +1,14 @@
+// Importa funções de cores do Sass e nosso arquivo de variáveis
+@use 'sass:color'; // Fornece funções para manipulação de cores
+@use '../styles/variables.scss' as vars; // Importa nossas variáveis de design
+
+/* Container principal - envolve todo o jogo */
+.main-container {
+    min-height: 100vh; // Ocupa pelo menos toda a altura da tela
+    background: linear-gradient(135deg, vars.$color-bg 0%, #e9f5ff 100%); // Gradiente suave de fundo
+    padding: 2rem; // Espaçamento interno
+    display: flex; // Ativa o layout flexbox
+    justify-content: center; // Centraliza horizontalmente
+    align-items: center; // Centraliza verticalmente
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // Fonte moderna e legível
+}
