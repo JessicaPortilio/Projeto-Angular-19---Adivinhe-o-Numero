@@ -26,7 +26,7 @@ Um jogo interativo onde o jogador deve adivinhar um número secreto entre 1 e 10
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/adivinhe-numero.git
+git clone https://github.com/JessicaPortilio/Projeto-Angular-19---Adivinhe-o-Numero.git
 ```
 2. Instale as dependências:
 ```bash
